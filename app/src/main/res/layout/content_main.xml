@@ -3,8 +3,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="#c2c1c1"
-    tools:context="com.example.shaun.musicapp.MainActivity" >
+    android:background="#ffffff"
+    tools:context="com.bard.MainActivity" >
 
     <ListView
         android:id="@+id/song_list"
