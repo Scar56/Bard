@@ -1,18 +1,13 @@
 package com.bard;
 
 import android.Manifest;
-import android.content.ComponentName;
 import android.content.ContentResolver;
-import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.example.shaun.musicapp.R;
@@ -21,13 +16,16 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * Created by shaun on 9/19/17.
+ * Created by Shaun Carpenter on 9/19/17.
  */
 
-public class artist_list  extends Base{
+public class artist_list extends Base{
+    @Override
+    public void onBackPressed() {
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.song_list);
+        setContentView(R.layout.artist_list);
 
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -41,10 +39,8 @@ public class artist_list  extends Base{
 
                 return;
             }}
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        songView = (ListView)findViewById(R.id.song_list);
+        songView = (ListView)findViewById(R.id.artist_list);
         getSongList();
 
         Collections.sort(songList, new Comparator<song>(){
@@ -58,57 +54,24 @@ public class artist_list  extends Base{
         setController();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-//        //noinspection Sim 0plifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-        switch (item.getItemId()) {
-            case R.id.action_shuffle:
-                musicSrv.setShuffle();
-                break;
-            case R.id.action_end:
-                stopService(playIntent);
-                musicSrv=null;
-                System.exit(0);
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
     //connect to the service
-    private ServiceConnection musicConnection = new ServiceConnection(){
-
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            MusicService.MusicBinder binder = (MusicService.MusicBinder)service;
-            //get service
-            musicSrv = binder.getService();
-            //pass list
-            musicSrv.setList(songList);
-            musicBound = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            musicBound = false;
-        }
-    };
+//    private ServiceConnection musicConnection = new ServiceConnection(){
+//
+//        @Override
+//        public void onServiceConnected(ComponentName name, IBinder service) {
+//            MusicService.MusicBinder binder = (MusicService.MusicBinder)service;
+//            //get service
+//            musicSrv = binder.getService();
+//            //pass list
+//            musicSrv.setList(songList);
+//            musicBound = true;
+//        }
+//
+//        @Override
+//        public void onServiceDisconnected(ComponentName name) {
+//            musicBound = false;
+//        }
+//    };
     public void getSongList() {
         //retrieve song info
         ContentResolver musicResolver = getContentResolver();

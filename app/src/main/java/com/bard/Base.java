@@ -1,28 +1,11 @@
 package com.bard;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.ContentUris;
-import android.content.pm.PackageManager;
-import android.media.MediaMetadataRetriever;
-import android.os.Build;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import android.net.Uri;
-import android.content.ContentResolver;
-import android.database.Cursor;
 import android.widget.ListView;
 
 import android.os.IBinder;
@@ -30,10 +13,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.view.MenuItem;
-import android.view.View;
 
-import com.bard.MusicService.MusicBinder;
 import com.example.shaun.musicapp.R;
 import android.widget.MediaController.MediaPlayerControl;
 
@@ -47,6 +27,13 @@ public class Base extends AppCompatActivity implements MediaPlayerControl {
     protected MusicController controller;
     protected boolean paused=false, playbackPaused=false;
 
+    public void songListClick(View view){
+        startActivity(new Intent(this, song_list.class));
+    }
+
+    public void artistListClick(View view){
+        startActivity(new Intent(this, artist_list.class));
+    }
 
     //connect to the service
     private ServiceConnection musicConnection = new ServiceConnection(){
