@@ -17,5 +17,7 @@
         android:id="@+id/artist_button"
         android:layout_width="193dp"
         android:layout_height="match_parent"
-        android:text="Artists" />
+        android:text="Artists"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/song_button" />
 </RelativeLayout>

@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.bard.MainActivity"
+            android:name="com.bard.songlist"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"

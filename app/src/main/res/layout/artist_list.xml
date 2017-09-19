@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="com.bard.MainActivity" >
+    tools:context="com.bard.Base" >
 
     <TextView
         android:id="@+id/artist_page_title"
