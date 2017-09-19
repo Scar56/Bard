@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/taskbar"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:layout_gravity="bottom"
+    android:clickable="true"
+    android:background="#cfcfcf">
 
-</LinearLayout>
+    <Button
+        android:id="@+id/song_button"
+        android:layout_width="193dp"
+        android:layout_height="match_parent"
+        android:text="Songs" />
+    <Button
+        android:id="@+id/artist_button"
+        android:layout_width="193dp"
+        android:layout_height="match_parent"
+        android:text="Artists" />
+</RelativeLayout>
