@@ -25,7 +25,7 @@ public class song_list extends Base {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.song_list);
+        setContentView(R.layout.item_list);
 
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

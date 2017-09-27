@@ -20,7 +20,9 @@ import android.widget.MediaController.MediaPlayerControl;
 public class Base extends AppCompatActivity implements MediaPlayerControl {
 
     protected ArrayList<song> songList = new ArrayList<song>();
+    protected ArrayList<artist> artistList = new ArrayList<artist>();
     protected ListView songView;
+    protected ListView artistView;
     protected MusicService musicSrv;
     protected Intent playIntent;
     protected boolean musicBound=false;
@@ -111,6 +113,10 @@ public class Base extends AppCompatActivity implements MediaPlayerControl {
             playbackPaused=false;
         }
         controller.show(0);
+    }
+
+    public void artistPicked(View view) {
+
     }
 
     protected void setController(){

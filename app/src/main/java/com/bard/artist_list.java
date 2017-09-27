@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 
 import com.example.shaun.musicapp.R;
@@ -25,7 +24,7 @@ public class artist_list extends Base{
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.artist_list);
+        setContentView(R.layout.item_list);
 
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -40,17 +39,17 @@ public class artist_list extends Base{
                 return;
             }}
 
-        songView = (ListView)findViewById(R.id.artist_list);
-        getSongList();
+        artistView = (ListView)findViewById(R.id.song_list);
+        getArtistList();
 
-        Collections.sort(songList, new Comparator<song>(){
-            public int compare(song a, song b){
-                return a.getTitle().compareTo(b.getTitle());
+        Collections.sort(artistList, new Comparator<artist>(){
+            public int compare(artist a, artist b){
+                return a.getName().compareTo(b.getName());
             }
         });
 
-        songAdapter songAdt = new songAdapter(this, songList);
-        songView.setAdapter(songAdt);
+        artistAdapter artistAdt = new artistAdapter(this, artistList);
+        artistView.setAdapter(artistAdt);
         setController();
     }
 
@@ -72,7 +71,7 @@ public class artist_list extends Base{
 //            musicBound = false;
 //        }
 //    };
-    public void getSongList() {
+    public void getArtistList() {
         //retrieve song info
         ContentResolver musicResolver = getContentResolver();
         Uri musicUri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
@@ -88,15 +87,25 @@ public class artist_list extends Base{
                     (android.provider.MediaStore.Audio.Media.ARTIST);
             int albumColumn = musicCursor.getColumnIndex
                     (android.provider.MediaStore.Audio.Media.ALBUM);
-            //TODO genre
             //add songs to list
 
             do {
+                boolean added = false;
                 long thisId = musicCursor.getLong(idColumn);
                 String thisTitle = musicCursor.getString(titleColumn);
                 String thisArtist = musicCursor.getString(artistColumn);
                 String thisAlbum = musicCursor.getString(albumColumn);
-                songList.add(new song(thisId, thisTitle, thisArtist, thisAlbum, null));
+
+                for (artist i:artistList) {
+                    if(i.getName().equals(thisArtist)){
+                        added = true;
+                        i.addSong(new song(thisId, thisTitle, thisArtist, thisAlbum, null));
+                        break;
+                    }
+                }
+
+                if(!added)
+                    artistList.add(new artist(thisArtist, new song(thisId, thisTitle, thisArtist, thisAlbum, null)));
             }
             while (musicCursor.moveToNext());
         }
