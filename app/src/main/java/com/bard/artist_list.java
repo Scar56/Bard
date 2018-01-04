@@ -7,10 +7,12 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import com.example.shaun.musicapp.R;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -21,6 +23,20 @@ import java.util.Comparator;
 public class artist_list extends Base{
     @Override
     public void onBackPressed() {
+        setContentView(R.layout.item_list);
+
+        artistView = (ListView)findViewById(R.id.item_list);
+//        getArtistList();
+
+//        Collections.sort(artistList, new Comparator<artist>(){
+//            public int compare(artist a, artist b){
+//                return a.getName().compareTo(b.getName());
+//            }
+//        });
+
+        artistAdapter artistAdt = new artistAdapter(this, artistList);
+        artistView.setAdapter(artistAdt);
+        setController();
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +55,7 @@ public class artist_list extends Base{
                 return;
             }}
 
-        artistView = (ListView)findViewById(R.id.song_list);
+        artistView = (ListView)findViewById(R.id.item_list);
         getArtistList();
 
         Collections.sort(artistList, new Comparator<artist>(){
@@ -50,6 +66,23 @@ public class artist_list extends Base{
 
         artistAdapter artistAdt = new artistAdapter(this, artistList);
         artistView.setAdapter(artistAdt);
+        setController();
+    }
+
+    public void artistPicked(View view) {
+        setContentView(R.layout.artist_list);
+        ArrayList<song> songs = artistList.get(Integer.parseInt(view.getTag().toString())).getsongs();
+
+        songView = (ListView)findViewById(R.id.artist_list);
+
+//        Collections.sort(songList, new Comparator<song>(){
+//            public int compare(song a, song b){
+//                return a.getTitle().compareTo(b.getTitle());
+//            }
+//        });
+
+        songAdapter songAdt = new songAdapter(this, songs);
+        songView.setAdapter(songAdt);
         setController();
     }
 

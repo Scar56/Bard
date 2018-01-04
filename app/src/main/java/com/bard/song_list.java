@@ -7,7 +7,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ListView;
 
 import com.example.shaun.musicapp.R;
@@ -39,10 +39,10 @@ public class song_list extends Base {
 
                 return;
             }}
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
-        songView = (ListView)findViewById(R.id.song_list);
+        songView = (ListView)findViewById(R.id.item_list);
         getSongList();
 
         Collections.sort(songList, new Comparator<song>(){
@@ -54,6 +54,16 @@ public class song_list extends Base {
         songAdapter songAdt = new songAdapter(this, songList);
         songView.setAdapter(songAdt);
         setController();
+    }
+
+    public void songPicked(View view){
+        musicSrv.setSong(Integer.parseInt(view.getTag().toString()));
+        musicSrv.playSong();
+        if(playbackPaused){
+            setController();
+            playbackPaused=false;
+        }
+        controller.show(0);
     }
 
 //

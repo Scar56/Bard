@@ -91,8 +91,8 @@ public class Base extends AppCompatActivity implements MediaPlayerControl {
 //        }
         switch (item.getItemId()) {
             case R.id.action_shuffle:
-            musicSrv.setShuffle();
-            break;
+                musicSrv.setShuffle();
+                break;
             case R.id.action_end:
                 stopService(playIntent);
                 musicSrv=null;
@@ -105,19 +105,7 @@ public class Base extends AppCompatActivity implements MediaPlayerControl {
 
 
 
-    public void songPicked(View view){
-        musicSrv.setSong(Integer.parseInt(view.getTag().toString()));
-        musicSrv.playSong();
-        if(playbackPaused){
-            setController();
-            playbackPaused=false;
-        }
-        controller.show(0);
-    }
 
-    public void artistPicked(View view) {
-
-    }
 
     protected void setController(){
         //set the controller up
@@ -135,7 +123,7 @@ public class Base extends AppCompatActivity implements MediaPlayerControl {
         });
 
         controller.setMediaPlayer(this);
-        controller.setAnchorView(findViewById(R.id.song_list));
+        controller.setAnchorView(findViewById(R.id.item_list));
         controller.setEnabled(true);
     }
 

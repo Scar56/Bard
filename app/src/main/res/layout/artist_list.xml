@@ -42,6 +42,6 @@
 
     </LinearLayout>
 
-    <include layout="@layout/taskbar"/>
+    <!--<include layout="@layout/taskbar"/>-->
 
 </android.support.design.widget.CoordinatorLayout>
