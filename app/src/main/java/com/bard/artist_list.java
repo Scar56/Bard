@@ -69,10 +69,21 @@ public class artist_list extends Base{
         setController();
     }
 
+    public void songPicked(View view){
+        musicSrv.setSong(Integer.parseInt(view.getTag().toString()));
+        musicSrv.playSong();
+        if(playbackPaused){
+            setController();
+            playbackPaused=false;
+        }
+        controller.show(0);
+    }
+
     public void artistPicked(View view) {
         setContentView(R.layout.artist_list);
         ArrayList<song> songs = artistList.get(Integer.parseInt(view.getTag().toString())).getsongs();
 
+        musicSrv.setList(songs);
         songView = (ListView)findViewById(R.id.artist_list);
 
 //        Collections.sort(songList, new Comparator<song>(){
