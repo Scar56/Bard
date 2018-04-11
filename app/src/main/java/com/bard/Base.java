@@ -16,6 +16,7 @@ import android.content.ServiceConnection;
 
 import com.example.shaun.musicapp.R;
 import android.widget.MediaController.MediaPlayerControl;
+import android.widget.Toast;
 
 public class Base extends AppCompatActivity implements MediaPlayerControl {
 
@@ -30,11 +31,18 @@ public class Base extends AppCompatActivity implements MediaPlayerControl {
     protected boolean paused=false, playbackPaused=false;
 
     public void songListClick(View view){
-        startActivity(new Intent(this, song_list.class));
+
+        if (!this.getIntent().getComponent().getClassName().equals(song_list.class.getName())) {
+            startActivity(new Intent(this, song_list.class));
+            this.finish();
+        }
     }
 
     public void artistListClick(View view){
-        startActivity(new Intent(this, artist_list.class));
+        if (!this.getIntent().getComponent().getClassName().equals(artist_list.class.getName())){
+            startActivity(new Intent(this, artist_list.class));
+            this.finish();
+        }
     }
 
     //connect to the service
