@@ -15,8 +15,9 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 
 import com.example.shaun.musicapp.R;
+
+import android.widget.MediaController;
 import android.widget.MediaController.MediaPlayerControl;
-import android.widget.Toast;
 
 public class Base extends AppCompatActivity implements MediaPlayerControl {
 
@@ -27,7 +28,7 @@ public class Base extends AppCompatActivity implements MediaPlayerControl {
     protected MusicService musicSrv;
     protected Intent playIntent;
     protected boolean musicBound=false;
-    protected MusicController controller;
+    protected MediaController controller;
     protected boolean paused=false, playbackPaused=false;
 
     public void songListClick(View view){
@@ -119,7 +120,7 @@ public class Base extends AppCompatActivity implements MediaPlayerControl {
 
     protected void setController(){
         //set the controller up
-        controller = new MusicController(this);
+        controller = new MediaController(this);
         controller.setPrevNextListeners(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
