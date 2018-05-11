@@ -102,9 +102,11 @@ public class Base extends AppCompatActivity implements MediaPlayerControl {
                 musicSrv.setShuffle();
                 break;
             case R.id.action_end:
-                stopService(playIntent);
-                musicSrv=null;
-                System.exit(0);
+//                stopService(playIntent);
+//                musicSrv=null;
+                musicSrv.pausePlayer();
+                controller.hide();
+//                System.exit(0);
                 break;
         }
 
