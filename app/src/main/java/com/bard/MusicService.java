@@ -15,8 +15,6 @@ import java.util.Random;
 import android.app.Notification;
 import android.app.PendingIntent;
 
-import com.example.shaun.musicapp.R;
-
 public class MusicService extends Service implements
         MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener,
         MediaPlayer.OnCompletionListener {

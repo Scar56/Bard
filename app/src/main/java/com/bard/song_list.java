@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
-import com.example.shaun.musicapp.R;
 
 import java.util.Collections;
 import java.util.Comparator;

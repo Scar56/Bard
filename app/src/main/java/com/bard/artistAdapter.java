@@ -8,8 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.shaun.musicapp.R;
-
 import java.util.ArrayList;
 
 /**

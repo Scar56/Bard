@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.shaun.musicapp.R;
 
 /**
  * Created by shaun on 7/16/17.

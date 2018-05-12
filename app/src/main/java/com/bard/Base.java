@@ -1,5 +1,6 @@
 package com.bard;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Menu;
@@ -13,8 +14,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-
-import com.example.shaun.musicapp.R;
 
 import android.widget.MediaController;
 import android.widget.MediaController.MediaPlayerControl;
@@ -160,6 +159,10 @@ public class Base extends AppCompatActivity implements MediaPlayerControl {
     @Override
     protected void onStart() {
         super.onStart();
+        Context context = this;
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                getString(R.string.preference_file), Context.MODE_PRIVATE);
+        configs.initialize(sharedPref.getAll());
         if(playIntent==null){
             playIntent = new Intent(this, MusicService.class);
             bindService(playIntent, musicConnection, Context.BIND_AUTO_CREATE);
@@ -200,6 +203,7 @@ public class Base extends AppCompatActivity implements MediaPlayerControl {
             return musicSrv.getPosn();
         else return 0;
     }
+
 
     @Override
     public int getDuration() {
