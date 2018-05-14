@@ -43,6 +43,7 @@ public class songAdapter extends BaseAdapter{
         //map to song layout
         LinearLayout songLay = (LinearLayout)songInf.inflate
                 (R.layout.song, parent, false);
+        Context context = songLay.getContext();
         //get title and artist views
         TextView songView = (TextView)songLay.findViewById(R.id.song_title);
         TextView artistView = (TextView)songLay.findViewById(R.id.song_artist);
@@ -50,9 +51,10 @@ public class songAdapter extends BaseAdapter{
         song currSong = songs.get(position);
         //get title and artist strings
         songView.setText(currSong.getTitle());
-        songView.setTextColor(configs.getColor());
+        songView.setTextColor(configs.getColor("song",context));
+
         artistView.setText(currSong.getArtist());
-        artistView.setTextColor(configs.getColor());
+        artistView.setTextColor(configs.getColor("song",context));
         //set position as tag
         songLay.setTag(position);
         return songLay;
