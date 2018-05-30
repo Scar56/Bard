@@ -4,7 +4,7 @@ package com.bard;
  * Created by shaun on 7/15/17.
  */
 
-public class song {
+public class song implements Comparable<song>{
     private long id;
     private String title;
     private String artist;
@@ -33,5 +33,9 @@ public class song {
     }
     public String getGenre(){
         return genre;
+    }
+
+    public int compareTo(song other) {
+        return album.compareTo(other.album);
     }
 }

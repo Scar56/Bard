@@ -17,10 +17,12 @@ import android.widget.TextView;
 public class songAdapter extends BaseAdapter{
     private ArrayList<song> songs;
     private LayoutInflater songInf;
+    private int use;
 
-    public songAdapter(Context c, ArrayList<song> theSongs){
+    public songAdapter(Context c, ArrayList<song> theSongs, int use){
         songs=theSongs;
         songInf=LayoutInflater.from(c);
+        this.use = use;
     }
 
     @Override
@@ -53,10 +55,17 @@ public class songAdapter extends BaseAdapter{
         songView.setText(currSong.getTitle());
         songView.setTextColor(configs.getColor("song",context));
 
-        artistView.setText(currSong.getArtist());
+        switch(use){
+            case 1:
+                artistView.setText(currSong.getArtist());
+                break;
+            case 2:
+                artistView.setText(currSong.getAblum());
+        }
         artistView.setTextColor(configs.getColor("song",context));
         //set position as tag
         songLay.setTag(position);
         return songLay;
     }
+
 }

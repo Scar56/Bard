@@ -91,7 +91,7 @@ public class artist_list extends Base{
 //            }
 //        });
 
-        songAdapter songAdt = new songAdapter(this, songs);
+        songAdapter songAdt = new songAdapter(this, songs, 2);
         songView.setAdapter(songAdt);
         setController();
     }
@@ -151,6 +151,8 @@ public class artist_list extends Base{
                     artistList.add(new artist(thisArtist, new song(thisId, thisTitle, thisArtist, thisAlbum, null)));
             }
             while (musicCursor.moveToNext());
+            for(artist i : artistList)
+                i.sortAlbums();
         }
     }
 }

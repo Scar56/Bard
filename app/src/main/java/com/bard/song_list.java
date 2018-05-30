@@ -50,7 +50,7 @@ public class song_list extends Base {
             }
         });
 
-        songAdapter songAdt = new songAdapter(this, songList);
+        songAdapter songAdt = new songAdapter(this, songList,1);
         songView.setAdapter(songAdt);
         setController();
     }
